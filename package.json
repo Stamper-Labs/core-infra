@@ -1,0 +1,17 @@
+{
+  "name": "shared-infra",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mcsides/shared-infra.git",
+  "author": "Captain Mcwiise <mcwiise@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "tf:init": "cd envs/prod && terraform init",
+    "tf:plan": "cd envs/prod && terraform plan",
+    "tf:apply": "cd envs/prod && terraform apply --auto-approve",
+    "tf:destroy": "cd envs/prod && terraform destroy --auto-approve",
+    "tf:output": "cd envs/prod && terraform output",
+    "tf:format": "terraform fmt -recursive",
+    "tf:format:check": "terraform fmt -recursive -check"
+  }
+}
