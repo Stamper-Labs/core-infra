@@ -17,24 +17,31 @@ aws --profile stamper-prod s3api put-object \
 These npm scripts automate common Terraform tasks for the `envs/prod` environment. You can run them with `npm run <script-name>`.
 
 ```bash
-# Runs `terraform init` in the `envs/prod` directory to initialize the Terraform working directory.
+# Runs `terraform init` in the `envs/prod` directory
+# to initialize the Terraform working directory.
 yarn tf:init
 
-# Runs `terraform plan` in `envs/prod` to show the execution plan (what Terraform will do).
+# Runs `terraform plan` in `envs/prod`
+# to show the execution plan (what Terraform will do).
 yarn tf:plan
 
-# Runs `terraform apply --auto-approve` in `envs/prod` to apply the Terraform configuration without asking for confirmation.
+# Runs `terraform apply --auto-approve` in `envs/prod`
+# to apply the Terraform configuration without asking for confirmation.
 yarn tf:apply
 
-# Runs `terraform destroy --auto-approve` in `envs/prod` to destroy all managed infrastructure without asking for confirmation.
+# Runs `terraform destroy --auto-approve` in `envs/prod`
+# to destroy all managed infrastructure without asking for confirmation.
 yarn tf:destroy
 
-# Runs `terraform output` in `envs/prod` to display the output values from the Terraform state.
+# Runs `terraform output` in `envs/prod`
+# to display the output values from the Terraform state.
 yarn tf:output
 
-# Runs `terraform fmt -recursive` to format all Terraform files in the project and its subdirectories.
+# Runs `terraform fmt -recursive`
+# to format all Terraform files in the project and its subdirectories.
 yarn tf:format
 
-# Runs `terraform fmt -recursive -check` to check if all Terraform files are properly formatted (without making changes).
-yarn tf:format.check
+# Runs `terraform fmt -recursive -check`
+# to check if all Terraform files are properly formatted (without making changes).
+yarn tf:format:check
 ```
