@@ -95,7 +95,7 @@ Install the following tools:
 
 ## Command Line Interface
 
-These npm scripts automate common Terraform tasks for the `envs/prod` environment. You can run them with `npm run <script-name>`.
+This CLI automates common terraform tasks. You can run them with yarn <script-name>. They are agnostic of the environment and apply consistently across all projects.
 
 ```bash
 # Runs `terraform init` in the `envs/prod` directory

@@ -6,11 +6,11 @@
   "author": "Captain Mcwiise <mcwiise@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "tf:init": "cd envs/prod && terraform init",
-    "tf:plan": "cd envs/prod && terraform plan",
-    "tf:apply": "cd envs/prod && terraform apply --auto-approve",
-    "tf:destroy": "cd envs/prod && terraform destroy --auto-approve",
-    "tf:output": "cd envs/prod && terraform output",
+    "tf:init": "terraform init",
+    "tf:plan": "terraform plan",
+    "tf:apply": "terraform apply --auto-approve",
+    "tf:destroy": "terraform destroy --auto-approve",
+    "tf:output": "terraform output",
     "tf:format": "terraform fmt -recursive",
     "tf:format:check": "terraform fmt -recursive -check"
   }

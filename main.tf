@@ -1,5 +1,5 @@
 module "vpc" {
-  source                       = "../../module/vpc"
+  source                       = "./module/vpc"
   vpc_name_tag                 = "prod-vpc"
   subnet_availability_zone     = "us-east-1a"
   vpc_cidr_block               = "10.0.0.0/16"
