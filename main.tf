@@ -17,6 +17,13 @@ module "s3" {
   env_tag = "prod"
 }
 
+module "iam_openid_github" {
+  source = "./module/iam_openid"
+  connector_url = "https://token.actions.githubusercontent.com"
+  openid_client_id_list = ["sts.amazonaws.com"]
+  openid_thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+  env_tag = "prod"
+}
 output "policies_bucket_name" {
   value = module.s3.bucket_name
 }
@@ -27,4 +34,8 @@ output "vpc_id" {
 
 output "subnet_id" {
   value = module.vpc.subnet_id
+}
+
+output "oidc_github_provider_arn" {
+  value = module.iam_openid_github.oidc_provider_arn
 }
