@@ -11,6 +11,16 @@ module "vpc" {
   env_tag                      = "prod"
 }
 
+module "s3" {
+  source = "./module/s3"
+  s3_bucket_name = "stamper-labs-policies-bucket"
+  env_tag = "prod"
+}
+
+output "policies_bucket_name" {
+  value = module.s3.bucket_name
+}
+
 output "vpc_id" {
   value = module.vpc.vpc_id
 }
