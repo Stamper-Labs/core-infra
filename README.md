@@ -61,28 +61,28 @@ Install the following tools:
 - Create state terrafom bucket
 
   ```bash
-    aws --profile stamper-prod s3api create-bucket \
-    --bucket stamper-labs-tfstate-bucket \
-    --region us-east-1 \
+  aws --profile stamper-prod s3api create-bucket \
+  --bucket stamper-labs-tfstate-bucket \
+  --region us-east-1 \
   ```
 
 - Enable bucket versioning
 
   ```bash
-    aws --profile stamper-prod s3api put-bucket-versioning \
-    --bucket stamper-labs-tfstate-bucket \
-    --versioning-configuration Status=Enabled
+  aws --profile stamper-prod s3api put-bucket-versioning \
+  --bucket stamper-labs-tfstate-bucket \
+  --versioning-configuration Status=Enabled
   ```
 
 - Create the lock table
 
   ```bash
-    aws --profile stamper-prod dynamodb create-table \
-    --table-name stamper-labs-tfstate-locks \
-    --attribute-definitions AttributeName=LockID,AttributeType=S \
-    --key-schema AttributeName=LockID,KeyType=HASH \
-    --billing-mode PAY_PER_REQUEST \
-    --region us-east-1
+  aws --profile stamper-prod dynamodb create-table \
+  --table-name stamper-labs-tfstate-locks \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST \
+  --region us-east-1
   ```
 
 - Create state folder
@@ -90,7 +90,13 @@ Install the following tools:
   ```bash
   aws --profile stamper-prod s3api put-object \
   --bucket stamper-labs-tfstate-bucket \
-  --key base
+  --key base-infra/prod
+  ```
+
+  ```bash
+  aws --profile stamper-prod s3api put-object \
+  --bucket stamper-labs-tfstate-bucket \
+  --key base-infra/stg
   ```
 
 ## Command Line Interface

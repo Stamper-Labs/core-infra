@@ -6,12 +6,19 @@
   "author": "Captain Mcwiise <mcwiise@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "tf:init": "terraform init",
-    "tf:plan": "terraform plan",
-    "tf:apply": "terraform apply --auto-approve",
-    "tf:destroy": "terraform destroy --auto-approve",
-    "tf:output": "terraform output",
-    "tf:format": "terraform fmt -recursive",
-    "tf:format:check": "terraform fmt -recursive -check"
+    "tf:init": "cd envs/stg && terraform init",
+    "tf:plan": "cd envs/stg && terraform plan",
+    "tf:apply": "cd envs/stg && terraform apply --auto-approve",
+    "tf:destroy": "cd envs/stg && terraform destroy --auto-approve",
+    "tf:output": "cd envs/stg && terraform output",
+    "tf:format": "cd envs/stg && terraform fmt -recursive",
+    "tf:format:check": "cd envs/stg && terraform fmt -recursive -check",
+    "tf::prod:init": "cd envs/prod && terraform init",
+    "tf:prod:plan": "cd envs/prod && terraform plan",
+    "tf:prod:apply": "cd envs/prod && terraform apply --auto-approve",
+    "tf:prod:destroy": "cd envs/prod && terraform destroy --auto-approve",
+    "tf:prod:output": "cd envs/prod && terraform output",
+    "tf:prod:format": "cd envs/prod && terraform fmt -recursive",
+    "tf:prod:format:check": "cd envs/prod && terraform fmt -recursive -check"
   }
 }
