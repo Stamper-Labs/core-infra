@@ -63,7 +63,7 @@ Install the following tools:
   ```bash
   aws --profile stamper-prod s3api create-bucket \
   --bucket stamper-labs-tfstate-bucket \
-  --region us-east-1 \
+  --region us-east-1
   ```
 
 - Enable bucket versioning
@@ -90,13 +90,13 @@ Install the following tools:
   ```bash
   aws --profile stamper-prod s3api put-object \
   --bucket stamper-labs-tfstate-bucket \
-  --key base-infra/prod
+  --key base-infra/prod/
   ```
 
   ```bash
   aws --profile stamper-prod s3api put-object \
   --bucket stamper-labs-tfstate-bucket \
-  --key base-infra/stg
+  --key base-infra/stg/
   ```
 
 ## Command Line Interface

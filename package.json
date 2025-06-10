@@ -13,7 +13,7 @@
     "tf:output": "cd envs/stg && terraform output",
     "tf:format": "cd envs/stg && terraform fmt -recursive",
     "tf:format:check": "cd envs/stg && terraform fmt -recursive -check",
-    "tf::prod:init": "cd envs/prod && terraform init",
+    "tf:prod:init": "cd envs/prod && terraform init",
     "tf:prod:plan": "cd envs/prod && terraform plan",
     "tf:prod:apply": "cd envs/prod && terraform apply --auto-approve",
     "tf:prod:destroy": "cd envs/prod && terraform destroy --auto-approve",
