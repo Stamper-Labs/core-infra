@@ -98,7 +98,7 @@ Install the following tools:
   --bucket stamper-labs-tfstate-bucket \
   --key base-infra/stg/
   ```
-
+  
 ## Command Line Interface
 
 This CLI automates common terraform tasks. You can run them with yarn <script-name>. They are agnostic of the environment and apply consistently across all projects.
