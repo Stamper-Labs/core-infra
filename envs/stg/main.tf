@@ -30,8 +30,8 @@ module "std_github_iam_role" {
   role_name          = "STDServiceRoleForGitHub"
   assume_role_policy = file("./policy/github-assume-iam-role-trust-policy.json") # Update path if needed
   # apply twice module.std_ecr_iam_policy.iam_policy_arn to ensure it is created before use
-  policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
-  # policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess", module.std_ecr_iam_policy.iam_policy_arn]
+  # policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
+  policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess", module.std_ecr_iam_policy.iam_policy_arn]
   env_tag = "stg"
 }
 
@@ -55,32 +55,13 @@ module "std_stg_ecs_cluster" {
   env_tag          = "stg"
 }
 
-module "ecs_task_definition_nginx" {
-  source                   = "../../module/ecs_task_definition"
-  td_family                = "std-stg-ecs-ftask-nginx"
-  td_network_mode          = "awsvpc"
-  td_compatibilities       = ["FARGATE"]
-  td_cpu                   = "256"
-  td_memory                = "512"
-  td_container_definitions = file("./container/nginx.json")
-  td_execution_role_arn = module.std_ecs_task_iam_role.iam_role_arn
-  env_tag                  = "stg"
-}
-
-module "ecs_service_nginx" {
-  source                  = "../../module/ecs_service"
-  svc_name                = "std-stg-ecs-fsvc"
-  svc_cluster_id          = module.std_stg_ecs_cluster.ecs_cluster_id
-  svc_task_definition_arn = module.ecs_task_definition_nginx.task_definition_arn
-  svc_launch_type         = "FARGATE"
-  svc_desired_count       = 3
-  svc_subnets             = [data.terraform_remote_state.stamper_labs.outputs.subnet_id]
-  svc_security_groups     = [module.allow_http_security_group.sg_id]
-}
-
 module "ecr_repository_onboarding_api" {
   source = "../../module/ecr"
-  repository_name = "std-onboarding-api"
+  repository_name = "std-stg-onboarding-api"
+}
+
+output "ecs_cluster_id" {
+  value = module.std_stg_ecs_cluster.ecs_cluster_id
 }
 
 output "ecr_repository_id" {
@@ -89,4 +70,12 @@ output "ecr_repository_id" {
 
 output "iam_role_github_arn" {
   value = module.std_github_iam_role.iam_role_arn
+}
+
+output "ecs_task_execution_role_arn" {
+  value = module.std_ecs_task_iam_role.iam_role_arn
+}
+
+output "allow_http_security_group_id" {
+  value = module.allow_http_security_group.sg_id
 }
