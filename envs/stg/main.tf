@@ -57,7 +57,7 @@ module "std_stg_ecs_cluster" {
 
 module "ecr_repository_onboarding_api" {
   source = "../../module/ecr"
-  repository_name = "std-stg-onboarding-api"
+  repository_name = "std-onboarding-api"
 }
 
 output "ecs_cluster_id" {
