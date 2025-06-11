@@ -7,51 +7,32 @@ data "terraform_remote_state" "stamper_labs" {
   }
 }
 
-data "aws_s3_bucket" "stamper_labs_policies_bucket" {
-  bucket = data.terraform_remote_state.stamper_labs.outputs.policies_bucket_name
-}
-
-data "aws_s3_object" "ecs_task_trust_policy_s3_object" {
-  bucket = data.aws_s3_bucket.stamper_labs_policies_bucket.id
-  key    = "std-onboarding/ecs-task-assume-iam-role-trust-policy.json"
-}
-
-data "aws_s3_object" "github_trust_policy_s3_objet" {
-  bucket = data.aws_s3_bucket.stamper_labs_policies_bucket.id
-  key    = "std-onboarding/github-assume-iam-role-trust-policy.json"
-}
-
-data "aws_s3_object" "github_ecr_iam_policy_s3_object" {
-  bucket = data.aws_s3_bucket.stamper_labs_policies_bucket.id
-  key    = "std-onboarding/github-pull-and-push-ecr-iam-policy.json"
-}
-
 module "std_ecs_task_iam_role" {
   source             = "../../module/iam_role"
   role_name          = "STDServiceRoleForECSTasks"
-  assume_role_policy = data.aws_s3_object.ecs_task_trust_policy_s3_object.body
+  assume_role_policy = file("./policy/ecs-task-assume-iam-role-trust-policy.json")
   policy_arns = [
     "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
     "arn:aws:iam::aws:policy/SecretsManagerReadWrite"
   ]
-  env_tag            = "stg"
+  env_tag = "stg"
 }
 
 module "std_ecr_iam_policy" {
-  source = "../../module/iam_policy"
-  policy_name = "ECRPushPullPolicyForGitHubActions"
+  source            = "../../module/iam_policy"
+  policy_name       = "ECRPushPullPolicyForGitHubActions"
   policy_description = "ECR Push and Pull permissions for GitHub Actions"
-  policy = data.aws_s3_object.github_ecr_iam_policy_s3_object.body
+  policy            = file("./policy/github-pull-and-push-ecr-iam-policy.json")
 }
 
 module "std_github_iam_role" {
   source             = "../../module/iam_role"
   role_name          = "STDServiceRoleForGitHub"
-  assume_role_policy = data.aws_s3_object.github_trust_policy_s3_objet.body
+  assume_role_policy = file("./policy/github-assume-iam-role-trust-policy.json") # Update path if needed
   # apply twice module.std_ecr_iam_policy.iam_policy_arn to ensure it is created before use
-  # policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
-  policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess", module.std_ecr_iam_policy.iam_policy_arn]
-  env_tag            = "stg"
+  policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
+  # policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess", module.std_ecr_iam_policy.iam_policy_arn]
+  env_tag = "stg"
 }
 
 module "allow_http_security_group" {
@@ -81,7 +62,7 @@ module "ecs_task_definition_nginx" {
   td_compatibilities       = ["FARGATE"]
   td_cpu                   = "256"
   td_memory                = "512"
-  td_container_definitions = file("./docs/containers/nginx.json")
+  td_container_definitions = file("./container/nginx.json")
   td_execution_role_arn = module.std_ecs_task_iam_role.iam_role_arn
   env_tag                  = "stg"
 }

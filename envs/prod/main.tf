@@ -11,21 +11,12 @@ module "stamper_labs_prod_vpc" {
   env_tag                      = "prod"
 }
 
-module "stamper_labs_policies_bucket" {
-  source = "../../module/s3"
-  s3_bucket_name = "stamper-labs-policies-bucket"
-  env_tag = "prod"
-}
-
 module "github_id_provider_iam_openid" {
   source = "../../module/iam_openid"
   connector_url = "https://token.actions.githubusercontent.com"
   openid_client_id_list = ["sts.amazonaws.com"]
   openid_thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
   env_tag = "prod"
-}
-output "policies_bucket_name" {
-  value = module.stamper_labs_policies_bucket.bucket_name
 }
 
 output "vpc_id" {
