@@ -4,6 +4,7 @@
     {
       "Effect": "Allow",
       "Action": [
+        "iam:PassRole",
         "ecr:GetAuthorizationToken",
         "ecr:BatchCheckLayerAvailability",
         "ecr:CompleteLayerUpload",
@@ -14,7 +15,13 @@
         "ecs:UpdateService",
         "ecs:DescribeServices",
         "ecs:DescribeTaskDefinition",
-        "ecs:RegisterTaskDefinition"
+        "ecs:RegisterTaskDefinition",
+        "ecs:DeregisterTaskDefinition",
+        "ecs:TagResource",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:UpdateItem"
       ],
       "Resource": "*"
     }
