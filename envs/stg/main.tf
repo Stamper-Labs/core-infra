@@ -79,3 +79,7 @@ output "ecs_task_execution_role_arn" {
 output "allow_http_security_group_id" {
   value = module.allow_http_security_group.sg_id
 }
+
+output "vpc_subnet_id" {
+  value = data.terraform_remote_state.stamper_labs.outputs.vpc_subnet_id
+}

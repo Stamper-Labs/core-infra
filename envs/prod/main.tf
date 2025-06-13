@@ -23,7 +23,7 @@ output "vpc_id" {
   value = module.stamper_labs_prod_vpc.vpc_id
 }
 
-output "subnet_id" {
+output "vpc_subnet_id" {
   value = module.stamper_labs_prod_vpc.subnet_id
 }
 
