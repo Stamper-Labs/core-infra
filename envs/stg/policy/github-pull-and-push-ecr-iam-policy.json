@@ -13,6 +13,7 @@
         "ecr:PutImage",
         "ecr:UploadLayerPart",
         "ecs:UpdateService",
+        "ecs:CreateService",
         "ecs:DescribeServices",
         "ecs:DescribeTaskDefinition",
         "ecs:RegisterTaskDefinition",
