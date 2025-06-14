@@ -9,7 +9,10 @@
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:mcsides/std-*:ref:refs/heads/*"
+          "token.actions.githubusercontent.com:sub":[
+            "repo:mcsides/std-*:ref:refs/heads/*",
+            "repo:mcsides/std-*:ref:refs/tags/*"
+          ]
         }
       }
     }
