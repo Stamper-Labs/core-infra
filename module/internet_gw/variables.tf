@@ -1,8 +1,8 @@
 # -------------------------
 # --- regular arguments ---
 # -------------------------
-variable "vpc_cidr_block" {
-  description = "the vpc cidr block"
+variable "vpc_id" {
+  description = "the vpc id"
   type        = string
 }
 
@@ -10,8 +10,7 @@ variable "vpc_cidr_block" {
 # -------------------------
 # ------- tags list -------
 # -------------------------
-
-variable "vpc_name_tag" {
-  description = "the vpc name for tagging"
+variable "internet_gw_name_tag" {
+  description = "the internet gateway name for tagging"
   type        = string
 }
