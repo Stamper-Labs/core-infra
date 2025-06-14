@@ -36,11 +36,6 @@ variable "subnet_name_tag" {
   type        = string
 }
 
-variable "env_tag" {
-  description = "the environment for tagging"
-  type        = string
-}
-
 variable "internet_gateway_name_tag" {
   description = "the internet gateway name for tagging"
   type        = string
