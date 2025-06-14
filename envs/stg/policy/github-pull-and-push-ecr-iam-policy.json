@@ -12,6 +12,7 @@
         "ecr:InitiateLayerUpload",
         "ecr:PutImage",
         "ecr:UploadLayerPart",
+        "ecr:BatchGetImage",
         "ecs:UpdateService",
         "ecs:CreateService",
         "ecs:DescribeServices",
