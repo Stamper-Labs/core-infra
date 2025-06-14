@@ -6,19 +6,13 @@
   "author": "Captain Mcwiise <mcwiise@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "tf:init": "cd envs/stg && terraform init",
-    "tf:plan": "cd envs/stg && terraform plan",
-    "tf:apply": "cd envs/stg && terraform apply --auto-approve",
-    "tf:destroy": "cd envs/stg && terraform destroy --auto-approve",
-    "tf:output": "cd envs/stg && terraform output",
-    "tf:format": "cd envs/stg && terraform fmt -recursive",
-    "tf:format:check": "cd envs/stg && terraform fmt -recursive -check",
-    "tf:prod:init": "cd envs/prod && terraform init",
-    "tf:prod:plan": "cd envs/prod && terraform plan",
-    "tf:prod:apply": "cd envs/prod && terraform apply --auto-approve",
-    "tf:prod:destroy": "cd envs/prod && terraform destroy --auto-approve",
-    "tf:prod:output": "cd envs/prod && terraform output",
-    "tf:prod:format": "cd envs/prod && terraform fmt -recursive",
-    "tf:prod:format:check": "cd envs/prod && terraform fmt -recursive -check"
+    "tf:init": "node cli-terraform.js init",
+    "tf:plan": "node cli-terraform.js plan",
+    "tf:apply": "node cli-terraform.js apply",
+    "tf:destroy": "node cli-terraform.js destroy",
+    "tf:output": "node cli-terraform.js output-all"
+  },
+  "devDependencies": {
+    "commander": "^14.0.0"
   }
 }

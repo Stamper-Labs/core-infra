@@ -1,3 +1,3 @@
-output "iam_role_arn" {
+output "arn" {
   value = aws_iam_role.this.arn
 }

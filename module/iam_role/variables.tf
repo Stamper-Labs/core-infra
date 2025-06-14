@@ -13,12 +13,3 @@ variable "policy_arns" {
   type        = list(string)
   default     = []
 }
-
-# -------------------------
-# ------- tags list -------
-# -------------------------
-
-variable "env_tag" {
-  description = "the environment for tagging"
-  type        = string
-}

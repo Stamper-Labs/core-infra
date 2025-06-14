@@ -90,13 +90,7 @@ Install the following tools:
   ```bash
   aws --profile stamper-prod s3api put-object \
   --bucket stamper-labs-tfstate-bucket \
-  --key base-infra/prod/
-  ```
-
-  ```bash
-  aws --profile stamper-prod s3api put-object \
-  --bucket stamper-labs-tfstate-bucket \
-  --key base-infra/stg/
+  --key base-infra/
   ```
   
 ## Command Line Interface

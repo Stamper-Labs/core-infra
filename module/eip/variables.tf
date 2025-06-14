@@ -1,17 +1,16 @@
 # -------------------------
 # --- regular arguments ---
 # -------------------------
-
-variable "s3_bucket_name" {
-  description = "the bucket name"
+variable "domain" {
+  description = "the domain"
   type        = string
 }
+
 
 # -------------------------
 # ------- tags list -------
 # -------------------------
-
-variable "env_tag" {
-  description = "the environment for tagging"
+variable "eip_name_tag" {
+  description = "the eip name for tagging"
   type        = string
 }

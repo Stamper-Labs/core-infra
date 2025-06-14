@@ -16,8 +16,7 @@ variable "openid_thumbprint_list" {
 # -------------------------
 # ------- tags list -------
 # -------------------------
-
-variable "env_tag" {
-  description = "the environment for tagging"
+variable "openid_name_tag" {
+  description = "the openid name for tagging"
   type        = string
 }
