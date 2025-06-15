@@ -104,3 +104,18 @@ module "stamper_iam_role_github_actions" {
   # policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
   policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess", module.stamper_policy_ecr_push_and_pull.arn]
 }
+
+module "stamper_ecr_std_onboarding_api" {
+  source = "../module/ecr"
+  repository_name = "stamper/std-onboarding-api"
+}
+
+#-------------------------------------
+#----------PROJECT SPECIFICS----------
+#-------------------------------------
+
+module "std_stg_ecs_cluster" {
+  source = "../module/ecs"
+  cluster_name = "std_stg_ecs_cluster"
+  env_tag = "stg"
+}

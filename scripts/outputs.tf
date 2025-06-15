@@ -54,3 +54,15 @@ output "stamper_policy_ecr_push_and_pull_arn" {
 output "stamper_iam_role_github_actions_arn" {
   value = module.stamper_iam_role_github_actions.arn 
 }
+
+output "stamper_ecr_std_onboarding_api_id" {
+  value = module.stamper_ecr_std_onboarding_api.id
+}
+
+output "stamper_ecr_std_onboarding_api_url" {
+  value = module.stamper_ecr_std_onboarding_api.url
+}
+
+output "std_stg_ecs_cluster_id" {
+  value = module.std_stg_ecs_cluster.id
+}
