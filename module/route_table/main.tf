@@ -7,6 +7,7 @@ resource "aws_route_table" "this" {
   }
   tags = {
     Name = var.route_table_name_tag
+    Env = var.env_tag
   }
 }
 

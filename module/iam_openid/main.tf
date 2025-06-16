@@ -5,5 +5,6 @@ resource "aws_iam_openid_connect_provider" "this" {
   thumbprint_list = var.openid_thumbprint_list
   tags = {
     Name = var.openid_name_tag
+    Env = var.env_tag
   }
 }

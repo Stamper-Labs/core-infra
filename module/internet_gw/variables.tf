@@ -14,3 +14,8 @@ variable "internet_gw_name_tag" {
   description = "the internet gateway name for tagging"
   type        = string
 }
+
+variable "env_tag" {
+  description = "the environment internet gateway belongs for tagging"
+  type        = string
+}

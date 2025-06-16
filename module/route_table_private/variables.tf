@@ -23,3 +23,8 @@ variable "route_table_name_tag" {
   description = "the route table name for tagging"
   type        = string
 }
+
+variable "env_tag" {
+  description = "the environment"
+  type = string
+}

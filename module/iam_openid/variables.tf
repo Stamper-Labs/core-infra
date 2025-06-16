@@ -20,3 +20,8 @@ variable "openid_name_tag" {
   description = "the openid name for tagging"
   type        = string
 }
+
+variable "env_tag" {
+  description = "the environment"
+  type = string
+}

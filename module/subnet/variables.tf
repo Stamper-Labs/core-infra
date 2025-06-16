@@ -28,3 +28,8 @@ variable "subnet_name_tag" {
   description = "the subnet name for tagging"
   type        = string
 }
+
+variable "env_tag" {
+  description = "the environment it belongs to for tagging"
+  type        = string
+}

@@ -5,5 +5,6 @@ resource "aws_subnet" "this" {
   availability_zone       = var.availability_zone
   tags = {
     Name = var.subnet_name_tag
+    Env = var.env_tag
   }
 }

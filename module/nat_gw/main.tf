@@ -3,5 +3,6 @@ resource "aws_nat_gateway" "this" {
   subnet_id     = var.public_subnet_id # This must be a *public* subnet normally; using same for simplicity
   tags = {
     Name = var.nat_gw_name_tag
+    Env = var.env_tag
   }
 }
