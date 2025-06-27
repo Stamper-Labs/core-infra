@@ -7,16 +7,16 @@ output "stamper_vpc_internet_gw_id" {
   value = module.stamper_vpc_internet_gw.id
 }
 
-output "stamper_vpc_public_subnet_a_id" {
-  value = module.stamper_vpc_public_subnet_a.id
+output "stamper_vpc_subnet_a_public_id" {
+  value = module.stamper_vpc_subnet_a_public.id
 }
 
 output "stamper_vpc_route_table_id" {
   value = module.stamper_vpc_route_table.id
 }
 
-output "stamper_vpc_private_subnet_b_id" {
-  value = module.stamper_vpc_private_subnet_b.id
+output "stamper_vpc_subnet_b_private_id" {
+  value = module.stamper_vpc_subnet_b_private.id
 }
 
 output "stamper_vpc_elastic_ip_id" {
@@ -63,6 +63,6 @@ output "stamper_std_onboarding_api_ecr_url" {
   value = module.stamper_std_onboarding_api_ecr.url
 }
 
-output "std_stg_ecs_cluster_id" {
-  value = module.std_stg_ecs_cluster.id
+output "std_ecs_cluster_staging_id" {
+  value = module.std_ecs_cluster_staging.id
 }

@@ -13,13 +13,13 @@ module "stamper_vpc_internet_gw" {
   depends_on = [module.stamper_vpc]
 }
 
-module "stamper_vpc_public_subnet_a" {
+module "stamper_vpc_subnet_a_public" {
   source = "../module/subnet"
   vpc_id = module.stamper_vpc.id
   cidr_block = "192.168.1.0/24"
   map_public_ip_on_launch = true
   availability_zone = "us-east-1a"
-  subnet_name_tag = "stamper-vpc-public-subnet-a"
+  subnet_name_tag = "stamper-vpc-subnet-a-public"
   env_tag = "base-infra"
   depends_on = [module.stamper_vpc]
 }
@@ -27,23 +27,23 @@ module "stamper_vpc_public_subnet_a" {
 module "stamper_vpc_route_table" {
   source = "../module/route_table"
   vpc_id = module.stamper_vpc.id
-  public_subnet_id = module.stamper_vpc_public_subnet_a.id
+  public_subnet_id = module.stamper_vpc_subnet_a_public.id
   internet_gw_id = module.stamper_vpc_internet_gw.id
   route_table_name_tag = "stamper-vpc-route-table"
   env_tag = "base-infra"
   depends_on = [
-    module.stamper_vpc_public_subnet_a,
+    module.stamper_vpc_subnet_a_public,
     module.stamper_vpc_internet_gw
   ]
 }
 
-module "stamper_vpc_private_subnet_b" {
+module "stamper_vpc_subnet_b_private" {
   source = "../module/subnet"
   vpc_id = module.stamper_vpc.id
   cidr_block = "192.168.2.0/24"
   map_public_ip_on_launch = false
   availability_zone = "us-east-1a"
-  subnet_name_tag = "stamper-vpc-private-subnet-b"
+  subnet_name_tag = "stamper-vpc-subnet-b-private"
   env_tag = "base-infra"
   depends_on = [module.stamper_vpc]
 }
@@ -58,25 +58,25 @@ module "stamper_vpc_elastic_ip" {
 module "stamper_vpc_nat_gw" {
   source = "../module/nat_gw"
   elastic_ip_id = module.stamper_vpc_elastic_ip.id
-  public_subnet_id = module.stamper_vpc_public_subnet_a.id
+  public_subnet_id = module.stamper_vpc_subnet_a_public.id
   nat_gw_name_tag = "stamper-vpc-nat-gw"
   env_tag = "base-infra"
   depends_on = [
     module.stamper_vpc_elastic_ip,
-    module.stamper_vpc_public_subnet_a
+    module.stamper_vpc_subnet_a_public
   ]
 }
 
 module "stamper_vpc_route_table_private" {
   source = "../module/route_table_private"
   vpc_id = module.stamper_vpc.id
-  private_subnet_id = module.stamper_vpc_private_subnet_b.id
+  private_subnet_id = module.stamper_vpc_subnet_b_private.id
   nat_gateway_id = module.stamper_vpc_nat_gw.id
   route_table_name_tag = "stamper-vpc-route-table-private"
   env_tag = "base-infra"
   depends_on = [
     module.stamper_vpc_nat_gw,
-    module.stamper_vpc_private_subnet_b
+    module.stamper_vpc_subnet_b_private
   ]
 }
 
@@ -138,8 +138,8 @@ module "stamper_std_onboarding_api_ecr" {
   env_tag = "base-infra"
 }
 
-module "std_stg_ecs_cluster" {
+module "std_ecs_cluster_staging" {
   source = "../module/ecs"
-  cluster_name = "std-staging-ecs-cluster"
+  cluster_name = "std-ecs-cluster-staging"
   env_tag = "staging"
 }
