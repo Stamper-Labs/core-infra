@@ -66,3 +66,7 @@ output "stamper_std_onboarding_api_ecr_url" {
 output "std_ecs_cluster_staging_id" {
   value = module.std_ecs_cluster_staging.id
 }
+
+output "std_ecs_cluster_staging_name" {
+  value = module.std_ecs_cluster_staging.name
+}
