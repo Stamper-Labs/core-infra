@@ -10,8 +10,8 @@
       "Condition": {
         "StringLike": {
           "token.actions.githubusercontent.com:sub":[
-            "repo:mcsides/std-*:ref:refs/heads/*",
-            "repo:mcsides/std-*:ref:refs/tags/*"
+            "repo:Stamper-Labs/cnd-*:ref:refs/heads/*",
+            "repo:Stamper-Labs/cnd-*:ref:refs/tags/*"
           ]
         }
       }
