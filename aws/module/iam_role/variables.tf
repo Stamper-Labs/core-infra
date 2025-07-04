@@ -9,12 +9,12 @@ variable "assume_role_policy" {
 }
 
 variable "policy_arns" {
-  description = "List of IAM policy ARNs to attach to the role"
-  type        = list(string)
-  default     = []
+  description = "Map of policy ARNs to attach"
+  type        = map(string)
+  default     = {}
 }
 
 variable "env_tag" {
   description = "the environment"
-  type = string
+  type        = string
 }

@@ -10,7 +10,7 @@ program
   .version('1.0.0');
 
 function runTerraform(cmd) {
-  const scriptsDir = './scripts'; 
+  const scriptsDir = './aws/scripts'; 
   const shellCommand = `cd ${scriptsDir} && terraform ${cmd}`;
 
   const terraformProcess = spawn(shellCommand, {

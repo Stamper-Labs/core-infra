@@ -2,15 +2,15 @@
   "name": "shared-infra",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:mcsides/shared-infra.git",
+  "repository": "git@github.com:Stamper-Labs/core-infra.git",
   "author": "Captain Mcwiise <mcwiise@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "tf:init": "node cli-terraform.js init",
-    "tf:plan": "node cli-terraform.js plan",
-    "tf:apply": "node cli-terraform.js apply",
-    "tf:destroy": "node cli-terraform.js destroy",
-    "tf:output": "node cli-terraform.js output-all"
+    "tf:init:aws": "node ./aws/cli-terraform.js init",
+    "tf:plan:aws": "node ./aws/cli-terraform.js plan",
+    "tf:apply:aws": "node ./aws/cli-terraform.js apply",
+    "tf:destroy:aws": "node ./aws/cli-terraform.js destroy",
+    "tf:output:aws": "node ./aws/cli-terraform.js output-all"
   },
   "devDependencies": {
     "commander": "^14.0.0"
