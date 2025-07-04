@@ -39,6 +39,10 @@ output "github_provider_openid_arn" {
   value = module.github_provider_openid.arn
 }
 
+output "stamper_policy_dynamo_full_access_arn" {
+  value = module.stamper_policy_dynamo_full_access.arn
+}
+
 output "stamper_role_ecs_tasks_execution_arn" {
   value = module.stamper_role_ecs_tasks_execution.arn
 }

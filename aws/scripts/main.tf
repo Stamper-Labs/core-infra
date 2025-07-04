@@ -104,6 +104,13 @@ module "github_provider_openid" {
   env_tag                = "core-infra"
 }
 
+module "stamper_policy_dynamo_full_access" {
+  source             = "../module/iam_policy"
+  policy_name        = "StamperDynamoFullAccessPolicyForECSTasks"
+  policy_description = "Dynamo Full Permissions for ECS tasks"
+  policy             = file("./policy/dynamo-full-access.json")
+}
+
 module "stamper_role_ecs_tasks_execution" {
   source             = "../module/iam_role"
   role_name          = "StamperServiceRoleForECSTasksExecution"
@@ -111,6 +118,7 @@ module "stamper_role_ecs_tasks_execution" {
   policy_arns = {
     ecs_task_execution = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
     secrets_read_write = "arn:aws:iam::aws:policy/SecretsManagerReadWrite"
+    dynamo_full_access = module.stamper_policy_dynamo_full_access.arn
   }
   env_tag = "core-infra"
 }
