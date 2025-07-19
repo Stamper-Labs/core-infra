@@ -24,9 +24,18 @@
         "dynamodb:PutItem",
         "dynamodb:DeleteItem",
         "dynamodb:UpdateItem",
-        "iam:CreatePolicy",
+        "iam:CreateRole",
+        "iam:PutRolePolicy",
+        "iam:PassRole",
+        "iam:ListPolicyVersions",
         "iam:GetPolicy",
-        "iam:GetPolicyVersion"
+        "iam:CreatePolicy",
+        "iam:GetPolicyVersion",
+        "iam:DeletePolicy",
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:TagRole",
+        "iam:GetRole"
       ],
       "Resource": "*"
     }
