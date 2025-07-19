@@ -23,7 +23,10 @@
         "dynamodb:GetItem",
         "dynamodb:PutItem",
         "dynamodb:DeleteItem",
-        "dynamodb:UpdateItem"
+        "dynamodb:UpdateItem",
+        "iam:CreatePolicy",
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion"
       ],
       "Resource": "*"
     }

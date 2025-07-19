@@ -104,39 +104,20 @@ module "github_provider_openid" {
   env_tag                = "core-infra"
 }
 
-module "stamper_policy_dynamo_full_access" {
+module "stamper_policy_github_actions_provision" {
   source             = "../module/iam_policy"
-  policy_name        = "StamperDynamoFullAccessPolicyForECSTasks"
-  policy_description = "Dynamo Full Permissions for ECS tasks"
-  policy             = file("./policy/dynamo-full-access.json")
-}
-
-module "stamper_role_ecs_tasks_execution" {
-  source             = "../module/iam_role"
-  role_name          = "StamperServiceRoleForECSTasksExecution"
-  assume_role_policy = file("./policy/ecs-task-assume-policy.json")
-  policy_arns = {
-    ecs_task_execution = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-    secrets_read_write = "arn:aws:iam::aws:policy/SecretsManagerReadWrite"
-    dynamo_full_access = module.stamper_policy_dynamo_full_access.arn
-  }
-  env_tag = "core-infra"
-}
-
-module "stamper_policy_ecr_push_and_pull" {
-  source             = "../module/iam_policy"
-  policy_name        = "StamperECRPushPullPolicyForGitHubActions"
-  policy_description = "ECR push and pull permissions for github actions"
-  policy             = file("./policy/ecr-push-and-pull-policy.json")
+  policy_name        = "StamperGitHubActionsProvisioningPolicy"
+  policy_description = "IAM permissions required by StamperServiceRoleForGitHubActions to provision and manage AWS resources via Terraform."
+  policy             = file("./policy/github-actions-provision-policy.json")
 }
 
 module "stamper_role_github_actions" {
   source             = "../module/iam_role"
   role_name          = "StamperServiceRoleForGitHubActions"
-  assume_role_policy = file("./policy/github-assume-policy.json") # Update path if needed
+  assume_role_policy = file("./policy/github-actions-assume-policy.json")
   policy_arns = {
     s3_full_access = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-    ecr_push_pull  = module.stamper_policy_ecr_push_and_pull.arn
+    github_actions_provision  = module.stamper_policy_github_actions_provision.arn
   }
   env_tag = "core-infra"
 }
