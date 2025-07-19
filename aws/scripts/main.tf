@@ -86,7 +86,7 @@ module "stamper_vpc_security_group" {
   sg_vpc_id      = module.stamper_vpc.id
   sg_description = "Security group for ecs clusters"
   sg_ingress_rules = [
-    { from_port = 3000, to_port = 3000, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "Allow Microservices" },
+    { from_port = 1984, to_port = 1984, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"], description = "Allow cnd-onboarding-api" },
   ]
   sg_egress_rules = [
     { from_port = 0, to_port = 0, protocol = "-1", cidr_blocks = ["0.0.0.0/0"], description = "Allow all outbound" },

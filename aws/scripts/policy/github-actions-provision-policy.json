@@ -4,6 +4,13 @@
     {
       "Effect": "Allow",
       "Action": [
+        "dynamodb:CreateTable",
+        "dynamodb:DeleteTable",
+        "dynamodb:DescribeTable",
+        "dynamodb:UpdateTable",
+        "dynamodb:ListTables",
+        "dynamodb:TagResource",
+        "dynamodb:UntagResource",
         "dynamodb:DeleteItem",
         "dynamodb:GetItem",
         "dynamodb:PutItem",
