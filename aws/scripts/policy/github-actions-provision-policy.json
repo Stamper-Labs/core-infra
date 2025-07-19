@@ -35,7 +35,8 @@
         "iam:AttachRolePolicy",
         "iam:DetachRolePolicy",
         "iam:TagRole",
-        "iam:GetRole"
+        "iam:GetRole",
+        "iam:ListRolePolicies"
       ],
       "Resource": "*"
     }
