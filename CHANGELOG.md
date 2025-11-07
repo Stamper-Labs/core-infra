@@ -1,0 +1,24 @@
+# 1.0.0 (2025-11-07)
+
+
+### Bug Fixes
+
+* add more permissions ([4c61624](https://github.com/Stamper-Labs/core-infra/commit/4c6162429a5efc85f41549c018d695aeb96c0781))
+* provide missing permissions for github role ([df9ab54](https://github.com/Stamper-Labs/core-infra/commit/df9ab545a09ee04b7794d60f7e0004c3da425c6a))
+* set permissions ([90ab4da](https://github.com/Stamper-Labs/core-infra/commit/90ab4da60bb0822c6fb3d28042f19dd91f07fc64))
+* setting righ folder ([92ecb87](https://github.com/Stamper-Labs/core-infra/commit/92ecb87c43d1cce3080ed45926f2dd47ebdecc51))
+* setting righ node version ([6b0c205](https://github.com/Stamper-Labs/core-infra/commit/6b0c2056255555dd1d08f67c00dbe264ca46d0b1))
+* setting semantic deps ([13861a4](https://github.com/Stamper-Labs/core-infra/commit/13861a4c51d8982d2441ee906da981bf1387a2c7))
+* setting semantic deps ([c1566b2](https://github.com/Stamper-Labs/core-infra/commit/c1566b26ac97f246abe084bedd3a73e96f369ccd))
+* setup the base infra ([6c96977](https://github.com/Stamper-Labs/core-infra/commit/6c969779fc416ab5bab1fd19c4cc8e95e490ff75))
+* tag enforcement ([f13c225](https://github.com/Stamper-Labs/core-infra/commit/f13c225e2ec6151227d11e087c1ec43a497d8a38))
+
+
+### Features
+
+* adding a stack flag to the cli ([773e069](https://github.com/Stamper-Labs/core-infra/commit/773e069202ae6a28d0bef5bd5737dd9b73f0d17b))
+* adding ecr and ecs cluster modules ([#4](https://github.com/Stamper-Labs/core-infra/issues/4)) ([1137864](https://github.com/Stamper-Labs/core-infra/commit/1137864823bb10b6b8cd7a9c2423fe5e936b3ed3))
+* adding permissios for dynamo ([23d7573](https://github.com/Stamper-Labs/core-infra/commit/23d757398368427fe16c605b77c41e3af28e6fdb))
+* better organization ([f2413b8](https://github.com/Stamper-Labs/core-infra/commit/f2413b8406343beb85d7e784e8cd311900a00ed0))
+* make it more cheaper ([e7d9aaf](https://github.com/Stamper-Labs/core-infra/commit/e7d9aaf8b0e3e247158b7e944829e9e154b66c8e))
+* udate gitub policy ([f54cb21](https://github.com/Stamper-Labs/core-infra/commit/f54cb215672365d3458437e07f10b3dacaee75d1))
