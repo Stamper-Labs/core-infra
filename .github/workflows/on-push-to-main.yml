@@ -1,4 +1,4 @@
-name: Deploy NestJS App
+name: Release core-infra
 
 on:
   push:
@@ -10,8 +10,8 @@ permissions:
   contents: write
 
 jobs:
-  release:
-    uses: Stamper-Labs/core-flows/.github/workflows/yarn-node-build.yml@dev
+  build-for-release:
+    uses: Stamper-Labs/core-flows/.github/workflows/yarn-node-build.yml@v1.9.0
     with:
       node_version: "22"
       release_mode: 'yes'

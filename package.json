@@ -6,6 +6,7 @@
   "author": "Captain Mcwiise <mcwiise@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "prepare": "husky",
     "tf:init:aws": "node ./aws/cli-terraform.js init",
     "tf:plan:aws": "node ./aws/cli-terraform.js plan",
     "tf:apply:aws": "node ./aws/cli-terraform.js apply",
@@ -14,10 +15,13 @@
     "release": "semantic-release"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^12.0.1",
     "commander": "^14.0.0",
+    "husky": "^9.1.7",
     "semantic-release": "^25.0.1"
   }
 }
