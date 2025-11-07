@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Stamper-Labs/core-infra/compare/v1.0.0...v1.1.0) (2025-11-07)
+
+
+### Features
+
+* adding support to conventional commits ([3167aae](https://github.com/Stamper-Labs/core-infra/commit/3167aaeea794097c5f3adcaf8315bbaca821d261))
+
 # 1.0.0 (2025-11-07)
 
 
