@@ -4,5 +4,9 @@ resource "aws_lightsail_instance" "this" {
   blueprint_id      = var.blueprint_id
   bundle_id         = var.bundle_id
   user_data         = var.user_data
-  tags = var.tags
+  key_pair_name     = var.key_pair_name != "" ? var.key_pair_name : null
+  tags = {
+    Name = var.name
+    Env = var.env_tag
+  }
 }

@@ -26,8 +26,12 @@ variable "user_data" {
   default     = ""
 }
 
-variable "tags" {
-  description = "A map of tags to assign to the instance."
-  type        = map(string)
-  default     = {}
+variable "env_tag" {
+  description = "the environment"
+  type = string
+}
+
+variable "key_pair_name" {
+  description = "The name of the ssh key of the Lightsail instance."
+  type        = string
 }
