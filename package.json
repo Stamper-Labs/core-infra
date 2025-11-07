@@ -10,9 +10,15 @@
     "tf:plan:aws": "node ./aws/cli-terraform.js plan",
     "tf:apply:aws": "node ./aws/cli-terraform.js apply",
     "tf:destroy:aws": "node ./aws/cli-terraform.js destroy",
-    "tf:output:aws": "node ./aws/cli-terraform.js output-all"
+    "tf:output:aws": "node ./aws/cli-terraform.js output-all",
+    "release": "semantic-release"
   },
   "devDependencies": {
     "commander": "^14.0.0"
+  },
+  "dependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.1"
   }
 }
