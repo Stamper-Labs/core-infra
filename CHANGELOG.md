@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Stamper-Labs/core-infra/compare/v1.1.0...v1.2.0) (2025-11-07)
+
+
+### Features
+
+* create the lighsail vps ([ec6c4b8](https://github.com/Stamper-Labs/core-infra/commit/ec6c4b8cb72fc4956ebf0514aece99be4e397f18))
+
 # [1.1.0](https://github.com/Stamper-Labs/core-infra/compare/v1.0.0...v1.1.0) (2025-11-07)
 
 
