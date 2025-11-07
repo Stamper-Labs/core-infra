@@ -12,7 +12,8 @@
     "tf:apply:aws": "node ./aws/cli-terraform.js apply",
     "tf:destroy:aws": "node ./aws/cli-terraform.js destroy",
     "tf:output:aws": "node ./aws/cli-terraform.js output-all",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "vps:provision": "cd ./aws/stacks/lightsail/ansible && ansible-playbook -i inventory.ini install_k3s.yaml"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",

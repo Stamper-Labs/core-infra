@@ -1,0 +1,53 @@
+---
+- hosts: lightsail
+  become: true
+  tasks:
+    - name: Ensure dnf cache is up to date
+      ansible.builtin.command: dnf makecache
+      changed_when: false
+
+    - name: Remove curl-minimal to avoid conflicts
+      ansible.builtin.yum:
+        name: curl-minimal
+        state: absent
+
+    - name: Ensure full curl is installed
+      ansible.builtin.yum:
+        name: curl
+        state: latest
+
+    - name: Update all remaining packages
+      ansible.builtin.yum:
+        name: "*"
+        state: latest
+
+    - name: Install dependencies
+      ansible.builtin.yum:
+        name:
+          - sudo
+          - iptables
+          - conntrack
+          - socat
+          - bash-completion
+        state: present
+
+    - name: Download and install k3s
+      ansible.builtin.shell: |
+        curl -sfL https://get.k3s.io | sh -
+      args:
+        creates: /usr/local/bin/k3s
+
+    - name: Enable and start k3s service
+      ansible.builtin.systemd:
+        name: k3s
+        enabled: true
+        state: started
+
+    - name: Check k3s status
+      ansible.builtin.shell: k3s kubectl get nodes
+      register: k3s_nodes
+      changed_when: false
+
+    - name: Display nodes
+      ansible.builtin.debug:
+        var: k3s_nodes.stdout
