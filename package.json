@@ -14,9 +14,7 @@
     "release": "semantic-release"
   },
   "devDependencies": {
-    "commander": "^14.0.0"
-  },
-  "dependencies": {
+    "commander": "^14.0.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^12.0.1"
