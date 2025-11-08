@@ -1,6 +1,0 @@
-resources:
-  - ../../base
-  - namespace.yaml
-
-nameSuffix: -prod
-namespace: prod
