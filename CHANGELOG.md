@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Stamper-Labs/core-infra/compare/v1.2.0...v1.3.0) (2025-11-07)
+
+
+### Features
+
+* provision vps with ansible ([6db5d47](https://github.com/Stamper-Labs/core-infra/commit/6db5d4794be64e98642e4002cba8652ef36e9742))
+
 # [1.2.0](https://github.com/Stamper-Labs/core-infra/compare/v1.1.0...v1.2.0) (2025-11-07)
 
 
