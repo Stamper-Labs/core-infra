@@ -11,11 +11,16 @@ module "stamper_lightsail_vps" {
   blueprint_id      = "amazon_linux_2023"
   bundle_id         = "small_2_0"
   key_pair_name     = module.stamper_ligthsail_vps_ssh_key.name
-  user_data         = <<-EOT
-    #!/bin/bash
-    apt update && apt install -y nginx
-    systemctl enable nginx
-    systemctl start nginx
-  EOT
   env_tag = "core-infra"
+}
+
+resource "local_file" "ansible_inventory" {
+  filename = "./dist/inventory.ini"
+
+  content = <<-EOT
+    [lightsail]
+    stamper-vps ansible_host=${module.stamper_lightsail_vps.public_ip_address} ansible_user=ec2-user ansible_ssh_private_key_file=./dist/stamper-ligthsail-vps-ssh-key_private.pem ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+  EOT
+
+  depends_on = [module.stamper_lightsail_vps]
 }

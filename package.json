@@ -7,13 +7,13 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "tf:init:aws": "node ./aws/cli-terraform.js init",
-    "tf:plan:aws": "node ./aws/cli-terraform.js plan",
-    "tf:apply:aws": "node ./aws/cli-terraform.js apply",
-    "tf:destroy:aws": "node ./aws/cli-terraform.js destroy",
-    "tf:output:aws": "node ./aws/cli-terraform.js output-all",
-    "release": "semantic-release",
-    "vps:provision": "cd ./aws/stacks/lightsail/ansible && ansible-playbook -i inventory.ini install_k3s.yaml"
+    "tf:init:aws": "node core-infra-cli.js init",
+    "tf:plan:aws": "node core-infra-cli.js plan",
+    "tf:apply:aws": "node core-infra-cli.js apply",
+    "tf:destroy:aws": "node core-infra-cli.js destroy",
+    "tf:output:aws": "node core-infra-cli.js output-all",
+    "run:ls:playbook": "node core-infra-cli.js run-lightsail-playbook",
+    "release": "semantic-release"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",

@@ -1,0 +1,5 @@
+resources:
+  - postgres.yaml
+  - zookeeper.yaml
+  - kafka.yaml
+  - schema-registry.yaml
