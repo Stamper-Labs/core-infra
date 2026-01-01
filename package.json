@@ -13,7 +13,11 @@
     "tdes": "node core-infra-cli.js destroy",
     "touts": "node core-infra-cli.js output-all",
     "instance-pb": "node core-infra-cli.js run-lightsail-instance-playbook",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "format:check": "echo 'to implement'",
+    "lint": "echo 'to implement'",
+    "test:unit:cov": "echo 'to implement'",
+    "build": "echo 'to implement'"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
