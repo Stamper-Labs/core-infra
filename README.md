@@ -1,7 +1,12 @@
 # Core Infrastructure
 
-This repository contains shared infrastructure code and configurations for managing AWS resources using Terraform. 
-It is intended to provide reusable modules and state management for multiple environments and projects.
+This repository contains shared infrastructure code and configurations for managing cloud resources using Terraform.
+
+Resources are organized into **stacks**, which can represent different services or cloud providers such as AWS, DigitalOcean, or Lightsail.
+
+Each stack maintains its own **Terraform state**, allowing changes to be applied independently without affecting other stacks.
+
+The repository is designed to provide **reusable modules** and **robust state management** for multiple environments and projects.
 
 ## Getting Started
 
@@ -17,6 +22,12 @@ Install the following tools:
 
 Follow this [runbook](https://www.notion.so/Governance-16ef2184fa368030a104cceeda94fd9d?source=copy_link#17df2184fa3680519fc1ef163fa8fa8f) for details to configure the terraform state.
 
+## Available Stacks
+
+- `base`: Core resources for the AWS cloud provider.
+- `sail`: Resources for AWS Lightsail, designed for lightweight or simpler use cases.
+
+
 ## AWS Base Infrastructure
 
 Run following commands to create AWS base infrastructure
@@ -29,7 +40,7 @@ yarn tapply --stack base -a
 
 ## LightSail Infrastructure
 
-Run the following commands to create the Ligthsail infrastructure
+Run the following commands to create the LightSail infrastructure
 
 - Create github actions role
 
@@ -39,7 +50,7 @@ yarn tplan -s base -t module.stamper_role_github_actions -a
 yarn tapply -s base -t module.stamper_role_github_actions -a
 ```
 
-- Create lightsail resources using terraform
+- Create LightSail resources using terraform
 
   ```bash
   yarn tinit --stack sail
