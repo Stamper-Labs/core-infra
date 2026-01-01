@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/Stamper-Labs/core-infra/compare/v1.4.0...v1.4.1) (2026-01-01)
+
+
+### Bug Fixes
+
+* commands ([c225476](https://github.com/Stamper-Labs/core-infra/commit/c225476ee86e3a170d9f26642a02998cb7ac2a17))
+* move to core-flows 3.0.3 ([2c44bb0](https://github.com/Stamper-Labs/core-infra/commit/2c44bb03a94a872019ea42badb88f42f99d374d3))
+* vulns ([dbf7229](https://github.com/Stamper-Labs/core-infra/commit/dbf722900af2175d483011146ce4ed5fc5eaca86))
+
 # [1.4.0](https://github.com/Stamper-Labs/core-infra/compare/v1.3.0...v1.4.0) (2025-11-08)
 
 
