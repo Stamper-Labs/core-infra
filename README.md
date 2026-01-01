@@ -1,128 +1,80 @@
-# Base Infrastructure
+# Core Infrastructure
 
-This repository contains shared infrastructure code and configurations for managing AWS resources using Terraform. It is intended to provide reusable modules and state management for multiple environments and projects.
+This repository contains shared infrastructure code and configurations for managing AWS resources using Terraform. 
+It is intended to provide reusable modules and state management for multiple environments and projects.
 
 ## Getting Started
 
 Install the following tools:
 
-- Install Terraform
+- [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform)
+- [Install Ansible](https://formulae.brew.sh/formula/ansible)
 - Install Nodejs 22
 - Install yarn 1.22.22
 - Install aws cli
 
-### Configure AWS profile
+### Setup Terraform State
 
-- Grab the secret and access keys from the AWS web console.
+Follow this [runbook](https://www.notion.so/Governance-16ef2184fa368030a104cceeda94fd9d?source=copy_link#17df2184fa3680519fc1ef163fa8fa8f) for details to configure the terraform state.
 
-- Open `config` file for edition:
+## AWS Base Infrastructure
 
-  ```bash
-  # Create the .aws folder in case it does not exist
-  mkdir ~/.aws/
-  nano ~/.aws/config
-  ```
-
-- Add the following profile
-
-  ```bash
-  [profile stamper-prod]
-  region = us-east-1
-  ```
-
-- Open `credentials` file for edition
-
-  ```bash
-  nano ~/.aws/credentials
-  ```
-
-- Paste credentials
-
-  ```bash
-  [stamper-prod]
-  aws_access_key_id = your_aws_access_key_id
-  aws_secret_access_key = your_aws_secret_access_key
-  ```
-
-- Verify the configuration
-
-  ```bash
-  aws sts get-caller-identity --profile stamper-prod
-  ```
-
-- Enable profile via env variable
-
-  ```bash
-  export AWS_PROFILE=stamper-prod
-  ```
-
-### Setup the Terraform State
-
-- Create state terrafom bucket
-
-  ```bash
-  aws --profile stamper-prod s3api create-bucket \
-  --bucket stamper-labs-tfstate-bucket \
-  --region us-east-1
-  ```
-
-- Enable bucket versioning
-
-  ```bash
-  aws --profile stamper-prod s3api put-bucket-versioning \
-  --bucket stamper-labs-tfstate-bucket \
-  --versioning-configuration Status=Enabled
-  ```
-
-- Create the lock table
-
-  ```bash
-  aws --profile stamper-prod dynamodb create-table \
-  --table-name stamper-labs-tfstate-locks \
-  --attribute-definitions AttributeName=LockID,AttributeType=S \
-  --key-schema AttributeName=LockID,KeyType=HASH \
-  --billing-mode PAY_PER_REQUEST \
-  --region us-east-1
-  ```
-
-- Create state folder
-
-  ```bash
-  aws --profile stamper-prod s3api put-object \
-  --bucket stamper-labs-tfstate-bucket \
-  --key base-infra/
-  ```
-  
-## Command Line Interface
-
-This CLI automates common terraform tasks. You can run them with yarn <script-name>. They are agnostic of the environment and apply consistently across all projects.
+Run following commands to create AWS base infrastructure
 
 ```bash
-# Runs `terraform init` in the `envs/prod` directory
-# to initialize the Terraform working directory.
-yarn tf:init
+yarn tinit --stack base
+yarn tplan --stack base
+yarn tapply --stack base -a
+```
 
-# Runs `terraform plan` in `envs/prod`
-# to show the execution plan (what Terraform will do).
-yarn tf:plan
+## LightSail Infrastructure
 
-# Runs `terraform apply --auto-approve` in `envs/prod`
-# to apply the Terraform configuration without asking for confirmation.
-yarn tf:apply
+Run the following commands to create the Ligthsail infrastructure
 
-# Runs `terraform destroy --auto-approve` in `envs/prod`
-# to destroy all managed infrastructure without asking for confirmation.
-yarn tf:destroy
+- Create github actions role
 
-# Runs `terraform output` in `envs/prod`
-# to display the output values from the Terraform state.
-yarn tf:output
+```bash
+yarn tinit --stack base
+yarn tplan -s base -t module.stamper_role_github_actions -a
+yarn tapply -s base -t module.stamper_role_github_actions -a
+```
 
-# Runs `terraform fmt -recursive`
-# to format all Terraform files in the project and its subdirectories.
-yarn tf:format
+- Create lightsail resources using terraform
 
-# Runs `terraform fmt -recursive -check`
-# to check if all Terraform files are properly formatted (without making changes).
-yarn tf:format:check
+  ```bash
+  yarn tinit --stack sail
+  yarn tplan --stack sail
+  yarn tapply --stack sail -a
+  ```
+
+- Provision LightSail instance
+
+  ```bash
+  yarn instance-pb
+  ```
+
+## Command Line Interface
+
+```bash
+# Run `terraform init` for a specific stack
+yarn tinit --stack <stack-name>
+
+# Runs `terraform plan` for a specific stack
+yarn tplan --stack <stack-name>
+
+# Runs `terraform apply` for a specific stack
+yarn tapply --stack <stack-name>
+# Optionally the command can auto approve changes
+yarn tapply --stack <stack-name> -a
+
+# Runs `terraform destroy` for a specific stack
+yarn tdes --stack <stack-name>
+# Optionally the command can auto approve changes
+yarn tdes --stack <stack-name> -a
+
+# Runs `terraform output` for a specific stack
+yarn touts --stack <stack-name>
+
+# To display command documentation
+yarn <command> --help
 ```

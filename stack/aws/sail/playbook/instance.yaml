@@ -1,6 +1,11 @@
 ---
 - hosts: lightsail
   become: true
+  vars:
+    kube_user: ec2-user                # change if your user is different
+    kube_config_src: /etc/rancher/k3s/instance.yaml
+    kube_config_dest: /home/{{ kube_user }}/.kube/config
+
   tasks:
     - name: Ensure dnf cache is up to date
       ansible.builtin.command: dnf makecache

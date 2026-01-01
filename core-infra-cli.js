@@ -5,16 +5,16 @@ const { spawn } = require('child_process');
 const path = require('path');
 
 const program = new Command();
+const STACK_OPTION_DESCRIPTION = 'Specify which Terraform stack to run. Available stacks: base, sail';
 
 program
   .name('core-infra-cli')
-  .description('CLI to run core infra')
-  .version('1.1.0');
+  .description('CLI to run core infra');
 
 // --- Helper function ---
 function runTerraform(cmd, stack) {
 
-  const stackDir = `./aws/bootstrap/${stack}`;
+  const stackDir = `./stack/aws/${stack}`;
 
   console.log(`🧩 Using stack: ${stack}`);
   console.log(`🚀 Running: terraform ${cmd} inside ${stackDir}`);
@@ -36,7 +36,7 @@ function runTerraform(cmd, stack) {
 program
   .command('init')
   .description('Run terraform init')
-  .requiredOption('--stack <name>', 'Specify which Terraform stack to run (e.g., core-infra, staging, prod)')
+  .requiredOption('-s, --stack <stack>', STACK_OPTION_DESCRIPTION)
   .action((options) => {
     const stack = options.stack;
     runTerraform('init', stack);
@@ -45,37 +45,56 @@ program
 program
   .command('plan')
   .description('Run terraform plan')
-  .requiredOption('--stack <name>', 'Specify which Terraform stack to run (e.g., core-infra, staging, prod)')
+  .requiredOption('-s, --stack <stack>', STACK_OPTION_DESCRIPTION)
+  .option('-t, --target <target>', 'Specify a Terraform target module')
   .action((options) => {
     const stack = options.stack;
-    runTerraform('plan', stack);
+    const target = options.target ? `-target=${options.target}` : '';
+    const cmd = ['plan', target].filter(Boolean).join(' ');
+    runTerraform(cmd, stack);
   });
 
 program
   .command('apply')
   .description('Run terraform apply (with optional auto-approve)')
-  .requiredOption('--stack <name>', 'Specify which Terraform stack to run (e.g., core-infra, staging, prod)')
-  .option('--auto-approve', 'Enable auto-approve flag', false)
+  .requiredOption('-s, --stack <stack>', STACK_OPTION_DESCRIPTION)
+  .option('-a, --auto-approve', 'Enable auto-approve flag', false)
+  .option('-t, --target <target>', 'Specify a Terraform target module')
   .action((options) => {
     const stack = options.stack;
-    const cmd = options.autoApprove ? 'apply -auto-approve' : 'apply';
+
+    // Build the Terraform command dynamically
+    const parts = ['apply'];
+    if (options.autoApprove) parts.push('-auto-approve');
+    if (options.target) parts.push(`-target=${options.target}`);
+
+    const cmd = parts.join(' ');
+
     runTerraform(cmd, stack);
   });
 
 program
   .command('destroy')
   .description('Run terraform destroy (with optional auto-approve)')
-  .requiredOption('--stack <name>', 'Specify which Terraform stack to run (e.g., core-infra, staging, prod)')
-  .option('--auto-approve', 'Enable auto-approve flag', false)
+  .requiredOption('-s, --stack <stack>', STACK_OPTION_DESCRIPTION)
+  .option('-a, --auto-approve', 'Enable auto-approve flag', false)
+  .option('-t, --target <target>', 'Specify a Terraform target module')
   .action((options) => {
     const stack = options.stack;
-    const cmd = options.autoApprove ? 'destroy -auto-approve' : 'destroy';
+
+    // Build the Terraform command dynamically
+    const parts = ['destroy'];
+    if (options.autoApprove) parts.push('-auto-approve');
+    if (options.target) parts.push(`-target=${options.target}`);
+
+    const cmd = parts.join(' ');
+
     runTerraform(cmd, stack);
   });
 
 program
   .command('output-all')
-  .requiredOption('--stack <name>', 'Specify which Terraform stack to run (e.g., core-infra, staging, prod)')
+  .requiredOption('-s, --stack <stack>', STACK_OPTION_DESCRIPTION)
   .description('Run terraform output -json to get all outputs in JSON format')
   .action((options) => {
     const stack = options.stack;
@@ -84,15 +103,13 @@ program
 
 // --- NEW: run-playbooks command ---
 program
-  .command('run-lightsail-playbook')
+  .command('run-lightsail-instance-playbook')
   .description('Execute an Ansible playbook on the Lightsail instance')
-  .option('--name <playbook>', 'Playbook name to run (without .yaml)', 'k8s')
-  .action((options) => {
-    const playbookName = options.name;
+  .action(() => {
 
-    const lightsailDir = './aws/bootstrap/lightsail';
-    const inventoryFile = `./dist/inventory.ini`;
-    const playbookFile = `./playbook/${playbookName}.yaml`
+    const lightsailDir = path.join(process.cwd(), 'stack', 'aws', 'sail');
+    const inventoryFile = path.join(lightsailDir, 'dist', 'inventory.ini');
+    const playbookFile = path.join(lightsailDir, 'playbook', `instance.yaml`);
 
     const ansibleCmd = `cd ${lightsailDir} && ansible-playbook -i ${inventoryFile} ${playbookFile}`;
 

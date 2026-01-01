@@ -1,5 +1,5 @@
 {
-  "name": "shared-infra",
+  "name": "core-infra",
   "version": "1.4.0",
   "main": "index.js",
   "repository": "git@github.com:Stamper-Labs/core-infra.git",
@@ -7,12 +7,12 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "tf:init:aws": "node core-infra-cli.js init",
-    "tf:plan:aws": "node core-infra-cli.js plan",
-    "tf:apply:aws": "node core-infra-cli.js apply",
-    "tf:destroy:aws": "node core-infra-cli.js destroy",
-    "tf:output:aws": "node core-infra-cli.js output-all",
-    "run:ls:playbook": "node core-infra-cli.js run-lightsail-playbook",
+    "tinit": "node core-infra-cli.js init",
+    "tplan": "node core-infra-cli.js plan",
+    "tapply": "node core-infra-cli.js apply",
+    "tdes": "node core-infra-cli.js destroy",
+    "touts": "node core-infra-cli.js output-all",
+    "instance-pb": "node core-infra-cli.js run-lightsail-instance-playbook",
     "release": "semantic-release"
   },
   "devDependencies": {
