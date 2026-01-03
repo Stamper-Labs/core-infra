@@ -10,17 +10,27 @@ The repository is designed to provide **reusable modules** and **robust state ma
 
 ## Getting Started
 
-Install the following tools:
+### Install CLIs
 
-- [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform)
-- [Install Ansible](https://formulae.brew.sh/formula/ansible)
-- Install Nodejs 22
-- Install yarn 1.22.22
-- Install aws cli
+Follow the official [CLI installation runbook](https://www.notion.so/Command-Line-Interfaces-2ddf2184fa3681d7aca2e8d0e3ac4392?source=copy_link),
+to install and configure:
+
+- AWS CLI
+- Terraform CLI
+- Ansible CLI
+
+### Install runtime and package manager
+
+Follow the official [Nodejs installation runbook](https://www.notion.so/NodeJS-2ddf2184fa368133b8cdd0b2c8b77836?source=copy_link)
+to configure to install and configure:
+
+- Nodejs 22
+- yarn 1.22.22
 
 ### Setup Terraform State
 
-Follow this [runbook](https://www.notion.so/Governance-16ef2184fa368030a104cceeda94fd9d?source=copy_link#17df2184fa3680519fc1ef163fa8fa8f) for details to configure the terraform state.
+If the Terraform state has not been created yet, 
+follow the [official runbook to master the Terraform state](https://www.notion.so/Mastering-Terraform-State-2ddf2184fa36806cb5f9fd1faf5247ff?source=copy_link) like a pro.
 
 ## Available Stacks
 
@@ -44,11 +54,11 @@ Run the following commands to create the LightSail infrastructure
 
 - Create github actions role
 
-```bash
-yarn tinit --stack base
-yarn tplan -s base -t module.stamper_role_github_actions -a
-yarn tapply -s base -t module.stamper_role_github_actions -a
-```
+  ```bash
+  yarn tinit --stack base
+  yarn tplan -s base -t module.stamper_role_github_actions -a
+  yarn tapply -s base -t module.stamper_role_github_actions -a
+  ```
 
 - Create LightSail resources using terraform
 
