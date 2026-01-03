@@ -8,6 +8,11 @@ Each stack maintains its own **Terraform state**, allowing changes to be applied
 
 The repository is designed to provide **reusable modules** and **robust state management** for multiple environments and projects.
 
+In addition, the repository includes a Node.js–based CLI that simplifies day-to-day operations. This CLI provides a consistent and easy way to:
+
+- Execute Terraform commands (plan, apply, destroy)
+- Run Ansible playbooks
+
 ## Getting Started
 
 ### Install CLIs
@@ -29,14 +34,19 @@ to configure to install and configure:
 
 ### Setup Terraform State
 
-If the Terraform state has not been created yet, 
-follow the [official runbook to master the Terraform state](https://www.notion.so/Mastering-Terraform-State-2ddf2184fa36806cb5f9fd1faf5247ff?source=copy_link) like a pro.
+In case it is not created, follow the official
+[runbook to master the erraform state](https://www.notion.so/Mastering-Terraform-State-2ddf2184fa36806cb5f9fd1faf5247ff?source=copy_link) like a pro.
+
+### Install Project Dependencies
+
+```bash
+yarn install
+```
 
 ## Available Stacks
 
 - `base`: Core resources for the AWS cloud provider.
 - `sail`: Resources for AWS Lightsail, designed for lightweight or simpler use cases.
-
 
 ## AWS Base Infrastructure
 
