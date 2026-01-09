@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/Stamper-Labs/core-infra/compare/v2.0.0...v2.1.0) (2026-01-09)
+
+
+### Features
+
+* creating a independence ec2 instance ([d8a6317](https://github.com/Stamper-Labs/core-infra/commit/d8a631718a1a5a19dac1e3defa9a54e75f2967d4))
+
 # [2.0.0](https://github.com/Stamper-Labs/core-infra/compare/v1.4.3...v2.0.0) (2026-01-09)
 
 
