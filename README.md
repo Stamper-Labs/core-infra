@@ -2,13 +2,10 @@
 
 This repository contains shared infrastructure code and configurations for managing cloud resources using Terraform.
 
-Resources are organized into **stacks**, which can represent different services or cloud providers such as AWS, DigitalOcean, or Lightsail.
-
+Resources are organized into **stacks**, which can represent different services or cloud providers such as AWS, DigitalOcean, or Lightsail. 
 Each stack maintains its own **Terraform state**, allowing changes to be applied independently without affecting other stacks.
 
-The repository is designed to provide **reusable modules** and **robust state management** for multiple environments and projects.
-
-In addition, the repository includes a Node.js–based CLI that simplifies day-to-day operations. This CLI provides a consistent and easy way to:
+The repository includes a Node.js–based CLI that simplifies day-to-day operations. This CLI provides a consistent and easy way to:
 
 - Execute Terraform commands (plan, apply, destroy)
 - Run Ansible playbooks
@@ -32,10 +29,10 @@ to configure to install and configure:
 - Nodejs 22
 - yarn 1.22.22
 
-### Setup Terraform State
+### Setup Terraform State (Optional)
 
-In case it is not created, follow the official
-[runbook to master the erraform state](https://www.notion.so/Mastering-Terraform-State-2ddf2184fa36806cb5f9fd1faf5247ff?source=copy_link) like a pro.
+Follow the official
+[runbook to master the erraform state](https://www.notion.so/Mastering-Terraform-State-2ddf2184fa36806cb5f9fd1faf5247ff?source=copy_link), if it has not been created yet
 
 ### Install Project Dependencies
 
@@ -45,7 +42,8 @@ yarn install
 
 ## Available Stacks
 
-- `base`: Core resources for the AWS cloud provider.
+- `base_full`: Set of terraform core resources for the AWS cloud provider.
+- `base_cheap`: Set of cost-effective terrafrom core resources for the AWS cloud provider.
 - `sail`: Resources for AWS Lightsail, designed for lightweight or simpler use cases.
 
 ## AWS Base Infrastructure

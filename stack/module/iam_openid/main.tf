@@ -4,7 +4,8 @@ resource "aws_iam_openid_connect_provider" "this" {
   client_id_list  = var.openid_client_id_list
   thumbprint_list = var.openid_thumbprint_list
   tags = {
-    Name = var.openid_name_tag
-    Env = var.env_tag
+    tf_resource = var.tf_name_tag
+    stack = var.stack_tag
+    env = var.env_tag
   }
 }

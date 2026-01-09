@@ -14,7 +14,22 @@ variable "policy_arns" {
   default     = {}
 }
 
-variable "env_tag" {
-  description = "the environment"
+# -------------------------
+# ------ custom tags ------
+# -------------------------
+
+variable "tf_name_tag" {
+  description = "the terraform resource name tag"
   type        = string
+}
+
+variable "stack_tag" {
+  description = "the core-infra stack name"
+  type = string
+}
+
+variable "env_tag" {
+  description = "the environment the resource is associated to"
+  type = string
+  default = "none"
 }

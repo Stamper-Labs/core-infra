@@ -3,8 +3,9 @@ resource "aws_iam_role" "this" {
   name               = var.role_name
   assume_role_policy = var.assume_role_policy
   tags = {
-    Name = var.role_name
-    Env  = var.env_tag
+    tf_resource = var.tf_name_tag
+    stack = var.stack_tag
+    env = var.env_tag
   }
 }
 
