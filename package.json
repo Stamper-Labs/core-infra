@@ -1,6 +1,6 @@
 {
   "name": "core-infra",
-  "version": "1.4.3",
+  "version": "2.0.0",
   "main": "index.js",
   "repository": "git@github.com:Stamper-Labs/core-infra.git",
   "author": "Captain Mcwiise <mcwiise@gmail.com>",

@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/Stamper-Labs/core-infra/compare/v1.4.3...v2.0.0) (2026-01-09)
+
+
+### Features
+
+* create a base optimized infrastructure ([3f3cdfa](https://github.com/Stamper-Labs/core-infra/commit/3f3cdfa451010332360305e7c2b5757ad455fd2a))
+* create global stack for resource not tied to regions ([2f421c8](https://github.com/Stamper-Labs/core-infra/commit/2f421c8d9b26a2daf09d364bc962e8d3b3fffa54))
+* refactor base stack ([f4cf4dc](https://github.com/Stamper-Labs/core-infra/commit/f4cf4dc0acb0d149878ee574addf5b882c9714d5))
+* split terraform state per aws region ([e57e62c](https://github.com/Stamper-Labs/core-infra/commit/e57e62c22b05a2a72b8bcf635c93c07b61fe4519))
+
+
+### BREAKING CHANGES
+
+* Create terraform state for stack 100% independent each other
+
 ## [1.4.3](https://github.com/Stamper-Labs/core-infra/compare/v1.4.2...v1.4.3) (2026-01-03)
 
 
