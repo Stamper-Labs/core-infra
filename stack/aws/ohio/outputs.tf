@@ -15,22 +15,6 @@ output "stamper_vpc_route_table_id" {
   value = module.stamper_vpc_route_table.id
 }
 
-output "stamper_vpc_elastic_ip_id" {
-  value = module.stamper_vpc_elastic_ip.id
-}
-
-output "stamper_vpc_elastic_ip_public_ip" {
-  value = module.stamper_vpc_elastic_ip.public_ip
-}
-
 output "stamper_vpc_security_group_id" {
   value = module.stamper_vpc_security_group.id
-}
-
-output "stamper_cnd_onboarding_api_ecr_id" {
-  value = module.stamper_cnd_onboarding_api_ecr.id
-}
-
-output "stamper_cnd_onboarding_api_ecr_url" {
-  value = module.stamper_cnd_onboarding_api_ecr.url
 }
