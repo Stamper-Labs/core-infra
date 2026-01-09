@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/Stamper-Labs/core-infra/compare/v1.4.2...v1.4.3) (2026-01-03)
+
+
+### Bug Fixes
+
+* improving documentation ([49fdcaf](https://github.com/Stamper-Labs/core-infra/commit/49fdcaffbae822df79bdd6fa56c72f8ace605f0f))
+
 ## [1.4.2](https://github.com/Stamper-Labs/core-infra/compare/v1.4.1...v1.4.2) (2026-01-03)
 
 
