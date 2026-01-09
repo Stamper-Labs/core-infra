@@ -34,11 +34,3 @@ output "stamper_cnd_onboarding_api_ecr_id" {
 output "stamper_cnd_onboarding_api_ecr_url" {
   value = module.stamper_cnd_onboarding_api_ecr.url
 }
-
-output "cnd_ecs_cluster_staging_id" {
-  value = module.cnd_ecs_cluster_staging.id
-}
-
-output "cnd_ecs_cluster_staging_name" {
-  value = module.cnd_ecs_cluster_staging.name
-}

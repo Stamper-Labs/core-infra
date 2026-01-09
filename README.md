@@ -42,32 +42,15 @@ yarn install
 
 ## Available Stacks
 
-- `global`: Set of terraform resources that are not tied to a specific region
-- `base`: Set of terraform core resources for the AWS cloud provider.
-- `base_optimized`: Set of cost-effective terrafrom core resources for the AWS cloud provider.
+- `global`: Set of terraform resources that are not tied to a specific AWS region
+- `virginia`: Set of terraform core resources on AWS `us-east-1` region.
+- `ohio`: Set of cost-effective terrafrom core resources on AWS `us-east-2` region.
 - `sail`: Resources for AWS Lightsail, designed for lightweight or simpler use cases.
 
-## AWS Base Infrastructure
+## AWS `global` Stack
 
-Create global scoped resources
-
-```bash
-yarn tinit --stack global
-yarn tplan --stack global
-yarn tapply --stack global -a
-```
-
-Create the base stack
-
-```bash
-yarn tinit --stack base
-yarn tplan --stack base
-yarn tapply --stack base -a
-```
-
-## AWS Base Optimized Infrastructure
-
-Create global scoped resources
+The global stack is common to all other AWS stacks. Make sure to install it first, 
+before proceeding with the other stacks.
 
 ```bash
 yarn tinit --stack global
@@ -75,37 +58,37 @@ yarn tplan --stack global
 yarn tapply --stack global -a
 ```
 
-Create the base stack
+## AWS `virginia` Stack (`us-east-1` region)
 
 ```bash
-yarn tinit --stack base_optimized
-yarn tplan --stack base_optimized
-yarn tapply --stack base_optimized -a
+yarn tinit --stack virginia
+yarn tplan --stack virginia
+yarn tapply --stack virginia -a
+```
+
+## AWS `ohio` Stack (`us-east-2` region)
+
+```bash
+yarn tinit --stack ohio
+yarn tplan --stack ohio
+yarn tapply --stack ohio -a
 ```
 
 ## LightSail Infrastructure
 
-Create global scoped resources
+- Create LightSail resources using terraform
 
-```bash
-yarn tinit --stack global
-yarn tplan --stack global
-yarn tapply --stack global -a
-```
+    ```bash
+    yarn tinit --stack sail
+    yarn tplan --stack sail
+    yarn tapply --stack sail -a
+    ```
 
-Create LightSail resources using terraform
+- Provision LightSail instance
 
-```bash
-yarn tinit --stack sail
-yarn tplan --stack sail
-yarn tapply --stack sail -a
-```
-
-Provision LightSail instance
-
-```bash
-yarn instance-pb
-```
+    ```bash
+    yarn instance-pb
+    ```
 
 ## Command Line Interface
 

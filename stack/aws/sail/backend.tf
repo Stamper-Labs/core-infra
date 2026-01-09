@@ -1,9 +1,10 @@
 terraform {
   backend "s3" {
-    bucket         = "stamper-labs-tfstate-bucket"
-    key            = "lightsail/terraform.tfstate"
-    region         = "us-east-1"
+    bucket         = "stamperlabs-tfstate-bucket-virginia"
+    key            = "sail/terraform.tfstate"
     encrypt        = true
-    dynamodb_table = "stamper-labs-tfstate-locks"
+    dynamodb_table = "stamperlabs-tfstate-locks-virginia"
+    region         = "us-east-1"
+    profile        = "owners-virginia"
   }
 }

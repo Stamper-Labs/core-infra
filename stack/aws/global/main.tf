@@ -1,3 +1,9 @@
+provider "aws" {
+  region  = "us-east-1"
+  profile = "owners-virginia"
+  alias   = "virginia"
+}
+
 module "github_provider_openid" {
   source                 = "../../module/iam_openid"
   connector_url          = "https://token.actions.githubusercontent.com"
@@ -5,6 +11,9 @@ module "github_provider_openid" {
   openid_thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
   stack_tag                = "global"
   tf_name_tag = "github_provider_openid"
+  providers = {
+    aws = aws.virginia
+  }
 }
 
 module "stamper_policy_github_actions_provision" {
@@ -14,6 +23,9 @@ module "stamper_policy_github_actions_provision" {
   policy             = file("./policy/github-actions-provision-policy.json")
   stack_tag                = "global"
   tf_name_tag = "stamper_policy_github_actions_provision"
+  providers = {
+    aws = aws.virginia
+  }
 }
 
 module "stamper_role_github_actions" {
@@ -26,4 +38,7 @@ module "stamper_role_github_actions" {
   }
   stack_tag                = "global"
   tf_name_tag = "stamper_role_github_actions"
+  providers = {
+    aws = aws.virginia
+  }
 }
