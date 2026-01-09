@@ -4,7 +4,8 @@ resource "aws_subnet" "this" {
   map_public_ip_on_launch = var.map_public_ip_on_launch
   availability_zone       = var.availability_zone
   tags = {
-    Name = var.subnet_name_tag
-    Env = var.env_tag
+    tf_resource = var.tf_name_tag
+    stack = var.stack_tag
+    env = var.env_tag
   }
 }

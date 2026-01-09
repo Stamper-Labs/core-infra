@@ -25,7 +25,8 @@ resource "aws_security_group" "this" {
     }
   }
   tags = {
-    Name        = var.sg_name
-    Environment = var.env_tag
+    tf_resource = var.tf_name_tag
+    stack = var.stack_tag
+    env = var.env_tag
   }
 }

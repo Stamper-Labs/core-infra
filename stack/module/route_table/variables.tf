@@ -17,14 +17,21 @@ variable public_subnet_id {
 }
 
 # -------------------------
-# ------- tags list -------
+# ------ custom tags ------
 # -------------------------
-variable "route_table_name_tag" {
-  description = "the route table name for tagging"
+
+variable "tf_name_tag" {
+  description = "the terraform resource name tag"
   type        = string
 }
 
+variable "stack_tag" {
+  description = "the core-infra stack name"
+  type = string
+}
+
 variable "env_tag" {
-  description = "the environment it belongs to for tagging"
-  type        = string
+  description = "the environment the resource is associated to"
+  type = string
+  default = "core-infra"
 }

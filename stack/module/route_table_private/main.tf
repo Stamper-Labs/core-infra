@@ -6,8 +6,9 @@ resource "aws_route_table" "this" {
     nat_gateway_id = var.nat_gateway_id
   }
   tags = {
-    Name = var.route_table_name_tag
-    Env = var.env_tag
+    tf_resource = var.tf_name_tag
+    stack = var.stack_tag
+    env = var.env_tag
   }
 }
 

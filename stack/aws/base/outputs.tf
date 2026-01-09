@@ -35,20 +35,8 @@ output "stamper_vpc_route_table_private_id" {
   value = module.stamper_vpc_route_table_private.id
 }
 
-output "github_provider_openid_arn" {
-  value = module.github_provider_openid.arn
-}
-
 output "stamper_vpc_security_group_id" {
   value = module.stamper_vpc_security_group.id
-}
-
-output "stamper_policy_github_actions_provision_arn" {
-  value = module.stamper_policy_github_actions_provision.arn
-}
-
-output "stamper_role_github_actions_arn" {
-  value = module.stamper_role_github_actions.arn
 }
 
 output "stamper_cnd_onboarding_api_ecr_id" {

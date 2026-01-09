@@ -31,5 +31,5 @@ variable "stack_tag" {
 variable "env_tag" {
   description = "the environment the resource is associated to"
   type = string
-  default = "none"
+  default = "core-infra"
 }

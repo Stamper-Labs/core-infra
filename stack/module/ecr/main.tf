@@ -3,7 +3,8 @@ resource "aws_ecr_repository" "this" {
   image_tag_mutability = "MUTABLE"
   force_delete         = true
   tags = {
-    Name = var.repository_name
-    Env = var.env_tag
+    tf_resource = var.tf_name_tag
+    stack = var.stack_tag
+    env = var.env_tag
   }
 }

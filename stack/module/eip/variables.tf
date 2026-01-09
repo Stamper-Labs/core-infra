@@ -6,16 +6,22 @@ variable "domain" {
   type        = string
 }
 
+# -------------------------
+# ------ custom tags ------
+# -------------------------
 
-# -------------------------
-# ------- tags list -------
-# -------------------------
-variable "eip_name_tag" {
-  description = "the eip name for tagging"
+variable "tf_name_tag" {
+  description = "the terraform resource name tag"
   type        = string
 }
 
+variable "stack_tag" {
+  description = "the core-infra stack name"
+  type = string
+}
+
 variable "env_tag" {
-  description = "the environment for tagging"
-  type        = string
+  description = "the environment the resource is associated to"
+  type = string
+  default = "core-infra"
 }
