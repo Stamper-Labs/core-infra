@@ -1,14 +1,14 @@
 module "stamper_vpc" {
   source         = "../../module/vpc"
   vpc_cidr_block = "192.168.0.0/16"
-  stack_tag      = "base"
+  stack_tag      = "base_optimized"
   tf_name_tag = "stamper_vpc"
 }
 
 module "stamper_vpc_internet_gw" {
   source               = "../../module/internet_gw"
   vpc_id               = module.stamper_vpc.id
-  stack_tag      = "base"
+  stack_tag      = "base_optimized"
   tf_name_tag = "stamper_vpc_internet_gw"
   depends_on           = [module.stamper_vpc]
 }
@@ -18,8 +18,8 @@ module "stamper_vpc_subnet_a_public" {
   vpc_id                  = module.stamper_vpc.id
   cidr_block              = "192.168.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "us-east-1a"
-  stack_tag      = "base"
+  availability_zone       = "us-east-2a"
+  stack_tag      = "base_optimized"
   tf_name_tag = "stamper_vpc_subnet_a_public"
   depends_on              = [module.stamper_vpc]
 }
@@ -29,7 +29,7 @@ module "stamper_vpc_route_table" {
   vpc_id               = module.stamper_vpc.id
   public_subnet_id     = module.stamper_vpc_subnet_a_public.id
   internet_gw_id       = module.stamper_vpc_internet_gw.id
-  stack_tag      = "base"
+  stack_tag      = "base_optimized"
   tf_name_tag = "stamper_vpc_route_table"
   depends_on = [
     module.stamper_vpc_subnet_a_public,
@@ -37,47 +37,11 @@ module "stamper_vpc_route_table" {
   ]
 }
 
-module "stamper_vpc_subnet_b_private" {
-  source                  = "../../module/subnet"
-  vpc_id                  = module.stamper_vpc.id
-  cidr_block              = "192.168.2.0/24"
-  map_public_ip_on_launch = false
-  availability_zone       = "us-east-1a"
-  stack_tag      = "base"
-  tf_name_tag = "stamper_vpc_subnet_b_private"
-  depends_on              = [module.stamper_vpc]
-}
-
 module "stamper_vpc_elastic_ip" {
   source       = "../../module/eip"
   domain       = "vpc"
-  stack_tag      = "base"
+  stack_tag      = "base_optimized"
   tf_name_tag = "stamper_vpc_elastic_ip"
-}
-
-module "stamper_vpc_nat_gw" {
-  source           = "../../module/nat_gw"
-  elastic_ip_id    = module.stamper_vpc_elastic_ip.id
-  public_subnet_id = module.stamper_vpc_subnet_a_public.id
-  stack_tag      = "base"
-  tf_name_tag = "stamper_vpc_nat_gw"
-  depends_on = [
-    module.stamper_vpc_elastic_ip,
-    module.stamper_vpc_subnet_a_public
-  ]
-}
-
-module "stamper_vpc_route_table_private" {
-  source               = "../../module/route_table_private"
-  vpc_id               = module.stamper_vpc.id
-  private_subnet_id    = module.stamper_vpc_subnet_b_private.id
-  nat_gateway_id       = module.stamper_vpc_nat_gw.id
-  stack_tag      = "base"
-  tf_name_tag = "stamper_vpc_route_table_private"
-  depends_on = [
-    module.stamper_vpc_nat_gw,
-    module.stamper_vpc_subnet_b_private
-  ]
 }
 
 module "stamper_vpc_security_group" {
@@ -91,7 +55,7 @@ module "stamper_vpc_security_group" {
   sg_egress_rules = [
     { from_port = 0, to_port = 0, protocol = "-1", cidr_blocks = ["0.0.0.0/0"], description = "Allow all outbound" },
   ]
-  stack_tag      = "base"
+  stack_tag      = "base_optimized"
   tf_name_tag = "stamper_vpc_security_group"
   depends_on = [module.stamper_vpc]
 }
@@ -99,14 +63,14 @@ module "stamper_vpc_security_group" {
 module "stamper_cnd_onboarding_api_ecr" {
   source          = "../../module/ecr"
   repository_name = "stamper/cnd-onboarding-api"
-  stack_tag      = "base"
+  stack_tag      = "base_optimized"
   tf_name_tag = "stamper_cnd_onboarding_api_ecr"
 }
 
 module "cnd_ecs_cluster_staging" {
   source       = "../../module/ecs"
   cluster_name = "cnd-ecs-cluster-staging"
-  stack_tag      = "base"
+  stack_tag      = "base_optimized"
   tf_name_tag = "cnd_ecs_cluster_staging"
   env_tag = "stage"
 }

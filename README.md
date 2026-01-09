@@ -31,8 +31,8 @@ to configure to install and configure:
 
 ### Setup Terraform State (Optional)
 
-Follow the official
-[runbook to master the erraform state](https://www.notion.so/Mastering-Terraform-State-2ddf2184fa36806cb5f9fd1faf5247ff?source=copy_link), if it has not been created yet
+Create the terraform state for `us-east-1` and `us-east-2` regions, following the official
+[runbook to master the erraform state](https://www.notion.so/Mastering-Terraform-State-2ddf2184fa36806cb5f9fd1faf5247ff?source=copy_link).
 
 ### Install Project Dependencies
 
@@ -42,13 +42,22 @@ yarn install
 
 ## Available Stacks
 
-- `base_full`: Set of terraform core resources for the AWS cloud provider.
-- `base_cheap`: Set of cost-effective terrafrom core resources for the AWS cloud provider.
+- `global`: Set of terraform resources that are not tied to a specific region
+- `base`: Set of terraform core resources for the AWS cloud provider.
+- `base_optimized`: Set of cost-effective terrafrom core resources for the AWS cloud provider.
 - `sail`: Resources for AWS Lightsail, designed for lightweight or simpler use cases.
 
 ## AWS Base Infrastructure
 
-Run following commands to create AWS base infrastructure
+Create global scoped resources
+
+```bash
+yarn tinit --stack global
+yarn tplan --stack global
+yarn tapply --stack global -a
+```
+
+Create the base stack
 
 ```bash
 yarn tinit --stack base
@@ -56,31 +65,47 @@ yarn tplan --stack base
 yarn tapply --stack base -a
 ```
 
+## AWS Base Optimized Infrastructure
+
+Create global scoped resources
+
+```bash
+yarn tinit --stack global
+yarn tplan --stack global
+yarn tapply --stack global -a
+```
+
+Create the base stack
+
+```bash
+yarn tinit --stack base_optimized
+yarn tplan --stack base_optimized
+yarn tapply --stack base_optimized -a
+```
+
 ## LightSail Infrastructure
 
-Run the following commands to create the LightSail infrastructure
+Create global scoped resources
 
-- Create github actions role
+```bash
+yarn tinit --stack global
+yarn tplan --stack global
+yarn tapply --stack global -a
+```
 
-  ```bash
-  yarn tinit --stack base
-  yarn tplan -s base -t module.stamper_role_github_actions -a
-  yarn tapply -s base -t module.stamper_role_github_actions -a
-  ```
+Create LightSail resources using terraform
 
-- Create LightSail resources using terraform
+```bash
+yarn tinit --stack sail
+yarn tplan --stack sail
+yarn tapply --stack sail -a
+```
 
-  ```bash
-  yarn tinit --stack sail
-  yarn tplan --stack sail
-  yarn tapply --stack sail -a
-  ```
+Provision LightSail instance
 
-- Provision LightSail instance
-
-  ```bash
-  yarn instance-pb
-  ```
+```bash
+yarn instance-pb
+```
 
 ## Command Line Interface
 
